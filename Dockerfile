@@ -14,6 +14,7 @@ WORKDIR /app
 COPY --from=whisper-build /src/whisper.cpp/build/bin/whisper-cli /usr/local/bin/whisper-cli
 COPY --from=whisper-build /src/whisper.cpp/models/ggml-tiny.bin /opt/whisper/models/ggml-tiny.bin
 COPY package.json server.mjs ./
+RUN mkdir -p /data/jobs && chown node:node /data/jobs
 ENV PORT=3000 NODE_ENV=production WHISPER_MODEL=/opt/whisper/models/ggml-tiny.bin WHISPER_THREADS=2
 EXPOSE 3000
 USER node

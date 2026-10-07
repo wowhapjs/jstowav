@@ -1,6 +1,7 @@
 services:
   web:
     build: .
+    pull_policy: build
     container_name: jstowav
     restart: unless-stopped
     ports:
